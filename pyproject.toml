@@ -1,0 +1,151 @@
+[build-system]
+requires      = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+# ---------------------------------------------------------------------------
+# Project metadata  (PEP 621)
+# ---------------------------------------------------------------------------
+
+[project]
+name            = "website-replicator"
+version         = "7.0.0"
+description     = "Replicate websites for offline viewing — GUI (PyQt6) + CLI"
+readme          = "README.md"
+license         = { text = "MIT" }
+requires-python = ">=3.11"
+
+authors = [
+    { name = "Leon", email = "leon@keystoneai.dev" },
+]
+
+keywords = [
+    "website", "replicator", "downloader", "offline", "crawler",
+    "scraper", "archiver", "pyqt6", "cli",
+]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: X11 Applications :: Qt",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+]
+
+# Core runtime deps (GUI deps are optional — see [project.optional-dependencies])
+dependencies = [
+    "aiohttp>=3.9",
+    "beautifulsoup4>=4.12",
+    "validators>=0.28",
+    "cssutils>=2.9",
+]
+
+# ---------------------------------------------------------------------------
+# Optional dependency groups
+# ---------------------------------------------------------------------------
+
+[project.optional-dependencies]
+
+# Full GUI installation
+gui = [
+    "PyQt6>=6.6",
+]
+
+# Building a standalone executable
+build = [
+    "pyinstaller>=6.0",
+    "cairosvg>=2.7",
+    "pillow>=10.0",
+]
+
+# Development + testing
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "aiohttp[speedups]>=3.9",
+    "PyQt6>=6.6",
+]
+
+# Everything
+all = [
+    "website-replicator[gui,dev,build]",
+]
+
+# ---------------------------------------------------------------------------
+# Entry points
+# ---------------------------------------------------------------------------
+
+[project.scripts]
+# CLI entry point — works without PyQt6
+website-replicator = "website_replicator.cli:main"
+
+[project.gui-scripts]
+# GUI entry point — requires PyQt6
+website-replicator-gui = "website_replicator._gui_entry:main"
+
+# ---------------------------------------------------------------------------
+# URLs
+# ---------------------------------------------------------------------------
+
+[project.urls]
+Homepage       = "https://github.com/keystoneai/website-replicator"
+Repository     = "https://github.com/keystoneai/website-replicator"
+"Bug Tracker"  = "https://github.com/keystoneai/website-replicator/issues"
+
+# ---------------------------------------------------------------------------
+# Setuptools config
+# ---------------------------------------------------------------------------
+
+[tool.setuptools.packages.find]
+where   = ["."]
+include = ["website_replicator*"]
+
+[tool.setuptools.package-data]
+"website_replicator" = ["py.typed"]
+
+# ---------------------------------------------------------------------------
+# Pytest
+# ---------------------------------------------------------------------------
+
+[tool.pytest.ini_options]
+testpaths    = ["website_replicator/tests"]
+asyncio_mode = "auto"
+
+# ---------------------------------------------------------------------------
+# Coverage  (pip install coverage)
+# ---------------------------------------------------------------------------
+
+[tool.coverage.run]
+source  = ["website_replicator"]
+omit    = ["website_replicator/tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+# ---------------------------------------------------------------------------
+# Ruff  (pip install ruff)  — optional linter/formatter
+# ---------------------------------------------------------------------------
+
+[tool.ruff]
+target-version = "py311"
+line-length    = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+ignore = [
+    "E501",   # line too long — handled by formatter
+    "UP007",  # X | Y union syntax — keep Optional[] for clarity
+]
+
+[tool.ruff.lint.per-file-ignores]
+"website_replicator/tests/*" = ["E501", "F811"]

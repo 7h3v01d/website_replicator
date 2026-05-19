@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background rounded square -->
+  <rect width="64" height="64" rx="12" ry="12" fill="#2563eb"/>
+
+  <!-- Document body (white) -->
+  <rect x="14" y="10" width="28" height="36" rx="3" ry="3" fill="white" opacity="0.95"/>
+
+  <!-- Folded corner -->
+  <polygon points="34,10 42,10 42,18" fill="#2563eb" opacity="0.4"/>
+  <polygon points="34,10 34,18 42,18" fill="white" opacity="0.6"/>
+
+  <!-- Document lines -->
+  <rect x="18" y="20" width="16" height="2.5" rx="1.25" fill="#2563eb" opacity="0.35"/>
+  <rect x="18" y="25" width="20" height="2.5" rx="1.25" fill="#2563eb" opacity="0.35"/>
+  <rect x="18" y="30" width="13" height="2.5" rx="1.25" fill="#2563eb" opacity="0.35"/>
+
+  <!-- Download arrow circle (bottom-right, overlapping) -->
+  <circle cx="46" cy="48" r="14" fill="#1e40af"/>
+
+  <!-- Arrow shaft -->
+  <rect x="43.5" y="40" width="5" height="10" rx="2.5" fill="white"/>
+
+  <!-- Arrow head -->
+  <polygon points="39,49 46,57 53,49" fill="white"/>
+</svg>
