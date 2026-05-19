@@ -5,6 +5,19 @@ Available as both a **desktop GUI** (PyQt6) and a **command-line tool** (no Qt r
 
 ---
 
+## Responsible Use
+
+- Always respect `robots.txt` and website Terms of Service.
+- Use reasonable crawl depth and delays.
+- Do not use this tool to scrape large amounts of copyrighted content or overload servers.
+- The author is not responsible for misuse.
+
+---
+
+<img width="902" height="832" alt="screenshot" src="https://github.com/user-attachments/assets/54006231-0f97-4289-afac-cc3782d5cc20" />
+
+---
+
 ## Features
 
 | Feature | Detail |
